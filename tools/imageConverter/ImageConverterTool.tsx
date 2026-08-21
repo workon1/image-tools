@@ -36,7 +36,7 @@ export function ImageConverterTool({
     <section
       aria-label="Image converter"
       aria-busy={converter.converting}
-      className="overflow-hidden rounded-[2rem] border border-line bg-surface shadow-[var(--shadow-soft)]"
+      className="overflow-hidden rounded-[1.5rem] border border-line bg-surface shadow-[var(--shadow-soft)] sm:rounded-[2rem]"
     >
       {heading ? (
         <div className="border-b border-line px-5 py-4 sm:px-7">
@@ -44,7 +44,7 @@ export function ImageConverterTool({
         </div>
       ) : null}
 
-      <div className="space-y-6 p-5 sm:p-7">
+      <div className="space-y-6 p-4 sm:p-7">
         <ErrorBanner messages={converter.errors} />
 
         {!converter.activeImage ? (
@@ -135,7 +135,7 @@ export function ImageConverterTool({
               />
             ) : null}
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="tool-actions">
               {converter.converted ? (
                 <DownloadButton
                   blob={converter.converted.blob}

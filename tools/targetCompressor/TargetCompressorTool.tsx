@@ -120,7 +120,7 @@ export function TargetCompressorTool({ maxBytes, toolId }: TargetCompressorToolP
                 targetBytes={maxBytes}
               />
             ) : null}
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="tool-actions">
               {result ? (
                 <DownloadButton
                   blob={result.blob}

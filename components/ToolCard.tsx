@@ -30,12 +30,12 @@ export function ToolCard({ tool }: ToolCardProps) {
   );
 
   if (!isAvailable) {
-    return <article className="rounded-3xl bg-surface/70 p-6">{content}</article>;
+    return <article className="min-w-0 rounded-3xl bg-surface/70 p-5 sm:p-6">{content}</article>;
   }
 
   return (
-    <article className="rounded-3xl bg-surface shadow-[var(--shadow-soft)] transition-transform duration-150 hover:-translate-y-0.5">
-      <Link href={tool.href} className="block p-6 focus-visible:outline-offset-[-4px]">
+    <article className="min-w-0 rounded-3xl bg-surface shadow-[var(--shadow-soft)] sm:transition-transform sm:duration-150 sm:hover:-translate-y-0.5">
+      <Link href={tool.href} className="block p-5 sm:p-6 focus-visible:outline-offset-[-4px]">
         {content}
       </Link>
     </article>

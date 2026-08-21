@@ -56,11 +56,11 @@ export function ImageUploader({ onFiles, disabled = false, compact = false }: Im
         onDragEnter={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        className={`block cursor-pointer rounded-3xl border-2 border-dashed text-center transition-[border-color,background-color,transform,box-shadow] duration-150 ${
+        className={`block cursor-pointer rounded-3xl border-2 border-dashed text-center transition-[border-color,background-color,box-shadow] duration-150 ${
           dragging
-            ? "scale-[1.01] border-accent bg-accent/5 shadow-[var(--shadow-lift)]"
+            ? "border-accent bg-accent/5 shadow-[var(--shadow-lift)]"
             : "border-line bg-paper/60 hover:border-accent/50 hover:bg-accent/[0.03]"
-        } ${disabled ? "cursor-not-allowed opacity-60" : ""} ${compact ? "p-5 sm:p-6" : "p-8 sm:p-14"}`}
+        } ${disabled ? "cursor-not-allowed opacity-60" : ""} ${compact ? "p-4 sm:p-6" : "p-6 sm:p-14"}`}
       >
         <input
           ref={inputRef}

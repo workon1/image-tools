@@ -82,10 +82,10 @@ export function ImageToBase64Tool() {
                 readOnly
                 value={dataUrl}
                 rows={8}
-                className="mt-2 w-full rounded-2xl border border-line bg-paper p-3 font-mono text-xs text-ink"
+                className="mt-2 w-full min-w-0 rounded-2xl border border-line bg-paper p-3 font-mono text-xs text-ink"
               />
             </label>
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="tool-actions">
               <CopyButton text={dataUrl} label="Copy Base64" />
               <button type="button" className="btn-ghost" onClick={reset}>
                 Convert another image

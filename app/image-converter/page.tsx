@@ -14,7 +14,7 @@ export const metadata = createPageMetadata({
 
 export default function ImageConverterPage() {
   return (
-    <main id="main" className="mx-auto w-full max-w-4xl flex-1 px-4 py-10 sm:px-6 sm:py-16">
+    <main id="main" className="mx-auto w-full min-w-0 max-w-4xl flex-1 px-4 py-8 sm:px-6 sm:py-16">
       <p>
         <Link href="/tools" className="text-sm font-medium text-accent hover:underline">
           ← All tools
@@ -23,7 +23,7 @@ export default function ImageConverterPage() {
       <p className="mt-4 inline-flex rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
         Image tool
       </p>
-      <h1 className="mt-4 text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+      <h1 className="mt-4 text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
         Image Converter
       </h1>
       <p className="mt-4 max-w-2xl text-base leading-7 text-muted">

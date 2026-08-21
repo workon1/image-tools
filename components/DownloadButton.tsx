@@ -17,7 +17,7 @@ export function DownloadButton({
   outputFormat,
   disabled = false,
   label = "Download Image",
-  className = "btn-primary",
+  className = "btn-primary w-full sm:w-auto",
 }: DownloadButtonProps) {
   function handleClick() {
     const url = URL.createObjectURL(blob);

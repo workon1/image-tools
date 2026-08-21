@@ -19,12 +19,12 @@ export const metadata = createPageMetadata({
 
 export default function HomePage() {
   return (
-    <main id="main" className="mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6 sm:py-16">
+    <main id="main" className="mx-auto w-full min-w-0 max-w-6xl flex-1 px-4 py-8 sm:px-6 sm:py-16">
       <section className="text-center">
         <p className="inline-flex rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
           Fast, private, and free
         </p>
-        <h1 className="mx-auto mt-4 max-w-3xl text-4xl font-semibold tracking-tight text-ink sm:text-6xl">
+        <h1 className="mx-auto mt-4 max-w-3xl text-3xl font-semibold tracking-tight text-balance text-ink sm:text-6xl">
           Convert Images Online
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-muted sm:text-lg">
@@ -49,7 +49,7 @@ export default function HomePage() {
           <p className="mt-3 max-w-2xl text-base leading-7 text-muted">
             Convert, resize, crop, compress, and export — each tool runs in your browser.
           </p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          <div className="mt-8 grid min-w-0 gap-4 sm:grid-cols-2">
             {tools.map((tool) => (
               <ToolCard key={tool.id} tool={tool} />
             ))}

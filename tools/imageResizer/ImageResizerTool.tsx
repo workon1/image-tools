@@ -135,7 +135,7 @@ export function ImageResizerTool() {
               legend="Output format"
             />
             <ConversionProgress active={working} />
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="tool-actions">
               {result ? (
                 <DownloadButton
                   blob={result.blob}

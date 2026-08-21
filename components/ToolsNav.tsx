@@ -34,56 +34,46 @@ export function ToolsNav() {
   }, [open]);
 
   return (
-    <>
-      <Link
-        href="/tools"
-        className={`rounded-full px-2.5 py-1.5 transition-colors hover:bg-paper hover:text-ink sm:hidden ${
-          pathname === "/tools" ? "bg-paper text-ink" : "text-muted"
+    <div ref={rootRef} className="relative hidden sm:block">
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-haspopup="menu"
+        aria-controls="tools-menu"
+        onClick={() => setOpenPath(open ? null : pathname)}
+        className={`rounded-full px-2.5 py-1.5 transition-colors hover:bg-paper hover:text-ink ${
+          open || pathname === "/tools" ? "bg-paper text-ink" : "text-muted"
         }`}
       >
         Tools
-      </Link>
-      <div ref={rootRef} className="relative hidden sm:block">
-        <button
-          type="button"
-          aria-expanded={open}
-          aria-haspopup="menu"
-          aria-controls="tools-menu"
-          onClick={() => setOpenPath(open ? null : pathname)}
-          className={`rounded-full px-2.5 py-1.5 transition-colors hover:bg-paper hover:text-ink ${
-            open || pathname === "/tools" ? "bg-paper text-ink" : "text-muted"
-          }`}
+      </button>
+      {open ? (
+        <div
+          id="tools-menu"
+          role="menu"
+          className="absolute right-0 z-50 mt-2 max-h-[70vh] w-72 overflow-auto rounded-2xl border border-line bg-surface p-2 shadow-[var(--shadow-soft)]"
         >
-          Tools
-        </button>
-        {open ? (
-          <div
-            id="tools-menu"
-            role="menu"
-            className="absolute right-0 z-50 mt-2 max-h-[70vh] w-72 overflow-auto rounded-2xl border border-line bg-surface p-2 shadow-[var(--shadow-soft)]"
-          >
-            <ul>
-              {available.map((tool) => {
-                const active = pathname === tool.href;
-                return (
-                  <li key={tool.id}>
-                    <Link
-                      href={tool.href}
-                      role="menuitem"
-                      onClick={() => setOpenPath(null)}
-                      className={`block rounded-xl px-3 py-2 text-sm transition-colors hover:bg-paper ${
-                        active ? "bg-paper font-medium text-ink" : "text-ink"
-                      }`}
-                    >
-                      {tool.name}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        ) : null}
-      </div>
-    </>
+          <ul>
+            {available.map((tool) => {
+              const active = pathname === tool.href;
+              return (
+                <li key={tool.id}>
+                  <Link
+                    href={tool.href}
+                    role="menuitem"
+                    onClick={() => setOpenPath(null)}
+                    className={`block rounded-xl px-3 py-2 text-sm transition-colors hover:bg-paper ${
+                      active ? "bg-paper font-medium text-ink" : "text-ink"
+                    }`}
+                  >
+                    {tool.name}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ) : null}
+    </div>
   );
 }

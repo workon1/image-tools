@@ -16,7 +16,7 @@ export function ImagePreview({ src, alt, label }: ImagePreviewProps) {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={src} alt={alt} className="max-h-full max-w-full object-contain" />
         ) : (
-          <span className="rounded-full bg-surface/90 px-3 py-1 text-sm text-muted">
+          <span className="max-w-[90%] rounded-full bg-surface/90 px-3 py-1 text-center text-sm text-muted">
             Convert to see the result
           </span>
         )}

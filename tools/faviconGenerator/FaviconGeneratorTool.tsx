@@ -111,7 +111,7 @@ export function FaviconGeneratorTool() {
                 ))}
               </ul>
             ) : null}
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="tool-actions">
               <button type="button" className="btn-primary" onClick={run} disabled={working}>
                 {working ? "Generating..." : "Generate Favicons"}
               </button>
