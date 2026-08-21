@@ -11,7 +11,7 @@ export function Header() {
       >
         Skip to content
       </a>
-      <div className="mx-auto flex min-w-0 max-w-6xl items-center justify-between gap-2 rounded-2xl border border-line/80 bg-surface/80 px-2.5 py-2 shadow-[var(--shadow-soft)] backdrop-blur-md sm:gap-4 sm:rounded-full sm:px-4">
+      <div className="mx-auto flex min-w-0 max-w-6xl items-center justify-between gap-2 rounded-2xl border border-line/80 bg-surface/80 px-2.5 py-2 shadow-[var(--shadow-soft)] backdrop-blur-md lg:gap-4 lg:rounded-full lg:px-4">
         <Link
           href={routes.home}
           className="group flex min-w-0 items-center gap-2 rounded-full py-1 pr-1 sm:gap-2.5 sm:pr-2"
@@ -27,7 +27,7 @@ export function Header() {
             <span className="block truncate text-sm font-semibold tracking-tight text-ink">
               {siteConfig.name}
             </span>
-            <span className="hidden text-xs text-muted sm:block">Private image conversion</span>
+            <span className="hidden text-xs text-muted lg:block">Private image conversion</span>
           </span>
         </Link>
         <SiteNav />

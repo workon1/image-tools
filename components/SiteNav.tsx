@@ -48,7 +48,7 @@ export function SiteNav() {
 
   return (
     <nav aria-label="Primary" className="flex min-w-0 items-center gap-1">
-      <div ref={menuRef} className="relative sm:hidden">
+      <div ref={menuRef} className="relative lg:hidden">
         <button
           type="button"
           aria-expanded={open}
@@ -87,7 +87,7 @@ export function SiteNav() {
         ) : null}
       </div>
 
-      <ul className="hidden items-center text-sm sm:flex">
+      <ul className="hidden items-center text-sm lg:flex">
         {nav
           .filter((item) => item.href !== "/tools")
           .map((item) => (
@@ -103,7 +103,7 @@ export function SiteNav() {
       </ul>
       <Link
         href="/tools"
-        className="btn-primary hidden !min-h-9 !w-auto !px-4 text-sm sm:inline-flex"
+        className="btn-primary hidden !min-h-9 !w-auto !px-4 text-sm lg:inline-flex"
       >
         All tools
       </Link>
