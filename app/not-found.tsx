@@ -3,7 +3,7 @@ import { routes } from "@/config/site";
 
 export const metadata = {
   title: "Page not found",
-  description: "That URL is not part of Image Tools.",
+  description: "That URL is not part of Image Reshaper.",
   robots: { index: false, follow: true },
 };
 

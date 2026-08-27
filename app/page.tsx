@@ -1,13 +1,13 @@
+import { BrandLockup } from "@/components/BrandLockup";
 import { FAQ } from "@/components/FAQ";
 import { HowItWorks } from "@/components/HowItWorks";
 import { JsonLd } from "@/components/JsonLd";
 import { PrivacySection } from "@/components/PrivacySection";
 import { SupportedFormats } from "@/components/SupportedFormats";
-import { ToolCard } from "@/components/ToolCard";
+import { ToolsByCategory } from "@/components/ToolsByCategory";
 import { TrustBadges } from "@/components/TrustBadges";
 import { ImageConverterTool } from "@/tools/imageConverter/ImageConverterTool";
 import { converterFaq } from "@/tools/imageConverter/faq";
-import { tools } from "@/tools/registry";
 import { createPageMetadata } from "@/lib/seo";
 import { faqPageJsonLd } from "@/lib/structuredData";
 import { siteConfig } from "@/config/site";
@@ -24,7 +24,8 @@ export default function HomePage() {
     <main id="main" className="mx-auto w-full min-w-0 max-w-6xl flex-1 px-4 py-8 sm:px-6 sm:py-16">
       <JsonLd data={faqPageJsonLd(converterFaq)} />
       <section className="text-center">
-        <p className="inline-flex rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
+        <BrandLockup size="lg" align="center" />
+        <p className="mt-5 inline-flex rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
           Fast, private, and free
         </p>
         <h1 className="mx-auto mt-4 max-w-3xl text-3xl font-semibold tracking-tight text-balance text-ink sm:text-6xl">
@@ -45,17 +46,14 @@ export default function HomePage() {
       <div className="mt-24 space-y-24">
         <SupportedFormats />
         <HowItWorks />
-        <PrivacySection />
 
         <section>
-          <h2 className="text-3xl font-semibold tracking-tight text-ink">All tools</h2>
+          <h2 className="text-3xl font-semibold tracking-tight text-ink">Available tools</h2>
           <p className="mt-3 max-w-2xl text-base leading-7 text-muted">
             Convert, resize, crop, compress, and export — each tool runs in your browser.
           </p>
-          <div className="mt-8 grid min-w-0 gap-4 sm:grid-cols-2">
-            {tools.map((tool) => (
-              <ToolCard key={tool.id} tool={tool} />
-            ))}
+          <div className="mt-8">
+            <ToolsByCategory titleTag="h3" />
           </div>
         </section>
 
@@ -68,6 +66,8 @@ export default function HomePage() {
           </p>
           <FAQ items={converterFaq} />
         </section>
+
+        <PrivacySection />
       </div>
     </main>
   );

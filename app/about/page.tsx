@@ -3,16 +3,16 @@ import { routes, siteConfig } from "@/config/site";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "About Image Tools",
+  title: "About Image Reshaper",
   description:
-    "Image Tools is a free, privacy-first image utility that converts, compresses, resizes, and crops JPG, PNG, and WebP in your browser.",
+    "Image Reshaper is a free, privacy-first image utility that converts, compresses, resizes, and crops JPG, PNG, and WebP in your browser.",
   path: "/about",
 });
 
 export default function AboutPage() {
   return (
     <main id="main" className="prose-page mx-auto w-full flex-1 px-4 py-12 sm:px-6 sm:py-16">
-      <h1 className="text-4xl font-semibold tracking-tight text-ink">About Image Tools</h1>
+      <h1 className="text-4xl font-semibold tracking-tight text-ink">About Image Reshaper</h1>
       <p className="mt-4 text-base leading-7 text-muted">
         {siteConfig.name} is a small set of image utilities for converting, compressing, resizing,
         cropping, rotating, and exporting JPG, PNG, and WebP. The product exists so you can finish a

@@ -19,13 +19,14 @@ export default function ContactPage() {
       </p>
       {email ? (
         <p>
-          For project questions, email <a href={`mailto:${email}`}>{email}</a>.
+          For project questions, email{" "}
+          <a href={`mailto:${email}`}>{email}</a>. That address is on this website&apos;s domain
+          and is forwarded to our inbox.
         </p>
       ) : (
         <p>
-          A public contact address has not been configured yet. Set{" "}
-          <code className="font-mono text-ink">NEXT_PUBLIC_CONTACT_EMAIL</code> when you deploy if
-          you want this page to show a mailbox.
+          For project questions, use the email listed in the site footer once a public mailbox is
+          published.
         </p>
       )}
     </main>

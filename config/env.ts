@@ -40,7 +40,7 @@ export function resolveSiteUrl(
 
 export const env = {
   siteUrl: resolveSiteUrl(),
-  contactEmail: readPublicEnv("NEXT_PUBLIC_CONTACT_EMAIL"),
+  contactEmail: readPublicEnv("NEXT_PUBLIC_CONTACT_EMAIL") || "hello@imagereshaper.com",
   analyticsEnabled: readPublicFlag("NEXT_PUBLIC_ANALYTICS_ENABLED", false),
   analyticsProvider: readPublicEnv("NEXT_PUBLIC_ANALYTICS_PROVIDER", "none"),
   adsEnabled: readPublicFlag("NEXT_PUBLIC_ADS_ENABLED", false),

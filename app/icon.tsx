@@ -14,11 +14,12 @@ export default function Icon() {
         justifyContent: "center",
         background: "#0F766E",
         color: "#FFFDF8",
-        fontSize: 16,
+        fontSize: 13,
         fontWeight: 700,
+        letterSpacing: "-0.04em",
       }}
     >
-      IT
+      IR
     </div>,
     { ...size },
   );

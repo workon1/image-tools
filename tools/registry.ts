@@ -10,6 +10,8 @@ export type ToolDefinition = {
   status: ToolStatus;
   formats?: string[];
   group: "convert" | "compress" | "edit" | "export";
+  /** Landing pages nested under a hub card on the catalog, not shown as their own tile. */
+  parentId?: string;
 };
 
 export const tools: ToolDefinition[] = [
@@ -17,7 +19,8 @@ export const tools: ToolDefinition[] = [
     id: "image-converter",
     href: "/image-converter",
     name: "Image Converter",
-    description: "Convert JPG, PNG, and WebP images privately in your browser.",
+    description:
+      "Convert JPG, PNG, and WebP in either direction: JPG to PNG, PNG to JPG, JPG to WebP, WebP to JPG, PNG to WebP, and WebP to PNG.",
     status: "available",
     formats: ["JPG", "PNG", "WebP"],
     group: "convert",
@@ -29,6 +32,7 @@ export const tools: ToolDefinition[] = [
     description: pair.description,
     status: "available",
     group: "convert",
+    parentId: "image-converter",
   })),
   {
     id: "image-resizer",
@@ -42,7 +46,8 @@ export const tools: ToolDefinition[] = [
     id: "image-compressor",
     href: "/image-compressor",
     name: "Image Compressor",
-    description: "Reduce image file size while keeping the format you need.",
+    description:
+      "Reduce file size in your browser. Set a percent of the original, aim for 100 KB or 200 KB, or compress JPG, PNG, and WebP.",
     status: "available",
     group: "compress",
   },
@@ -53,6 +58,7 @@ export const tools: ToolDefinition[] = [
     description: "Shrink a JPG or WebP until it is 100 KB or smaller.",
     status: "available",
     group: "compress",
+    parentId: "image-compressor",
   },
   {
     id: "compress-to-200kb",
@@ -61,6 +67,7 @@ export const tools: ToolDefinition[] = [
     description: "Shrink a JPG or WebP until it is 200 KB or smaller.",
     status: "available",
     group: "compress",
+    parentId: "image-compressor",
   },
   {
     id: "compress-jpg",
@@ -69,6 +76,7 @@ export const tools: ToolDefinition[] = [
     description: "Reduce JPG file size in your browser to a target percent of the original bytes.",
     status: "available",
     group: "compress",
+    parentId: "image-compressor",
   },
   {
     id: "compress-png",
@@ -77,6 +85,7 @@ export const tools: ToolDefinition[] = [
     description: "Shrink PNG images by writing a smaller JPG or WebP in your browser.",
     status: "available",
     group: "compress",
+    parentId: "image-compressor",
   },
   {
     id: "compress-webp",
@@ -85,6 +94,7 @@ export const tools: ToolDefinition[] = [
     description: "Reduce WebP file size in your browser to a target percent of the original bytes.",
     status: "available",
     group: "compress",
+    parentId: "image-compressor",
   },
   {
     id: "image-cropper",
@@ -137,6 +147,14 @@ export const toolGroups: { id: ToolDefinition["group"]; label: string }[] = [
 
 export function getAvailableTools(): ToolDefinition[] {
   return tools.filter((tool) => tool.status === "available");
+}
+
+export function getHubTools(): ToolDefinition[] {
+  return tools.filter((tool) => !tool.parentId);
+}
+
+export function getChildTools(parentId: string): ToolDefinition[] {
+  return tools.filter((tool) => tool.parentId === parentId);
 }
 
 export function getToolById(id: string): ToolDefinition | undefined {

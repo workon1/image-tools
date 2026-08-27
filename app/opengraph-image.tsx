@@ -18,7 +18,27 @@ export default function OpenGraphImage() {
         padding: 72,
       }}
     >
-      <div style={{ display: "flex", fontSize: 22, color: "#0F766E" }}>Image Tools</div>
+      <div style={{ display: "flex", alignItems: "center", gap: 14, color: "#0F766E" }}>
+        <div
+          style={{
+            width: 44,
+            height: 44,
+            borderRadius: 12,
+            background: "#0F766E",
+            color: "#FFFDF8",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: 18,
+            fontWeight: 700,
+          }}
+        >
+          IR
+        </div>
+        <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: "-0.03em", color: "#1C1917" }}>
+          Image Reshaper
+        </div>
+      </div>
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div style={{ fontSize: 72, fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1.05 }}>
           Convert Images Online

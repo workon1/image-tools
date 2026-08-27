@@ -1,8 +1,8 @@
 import { env } from "@/config/env";
 
 export const siteConfig = {
-  name: "Image Tools",
-  shortName: "Image Tools",
+  name: "Image Reshaper",
+  shortName: "Reshaper",
   tagline: "Convert Images Online",
   description:
     "Convert JPG, PNG and WebP images online for free. Fast, private image conversion processed directly in your browser.",

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLockup } from "@/components/BrandLockup";
 import { routes, siteConfig } from "@/config/site";
 
 const footerLinks = [
@@ -17,8 +18,10 @@ export function Footer() {
       <div className="mx-auto max-w-6xl rounded-3xl border border-line bg-surface/80 px-5 py-8 shadow-[var(--shadow-soft)] sm:px-8">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="font-semibold tracking-tight text-ink">{siteConfig.name}</p>
-            <p className="mt-2 max-w-md text-sm leading-6 text-muted">
+            <Link href={routes.home} aria-label={siteConfig.name} className="inline-flex">
+              <BrandLockup size="md" />
+            </Link>
+            <p className="mt-3 max-w-md text-sm leading-6 text-muted">
               Bookmark this page for the next conversion. It stays free, local, and ready whenever
               you need it.
             </p>
