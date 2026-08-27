@@ -25,6 +25,7 @@ export const routes = {
   privacy: "/privacy",
   terms: "/terms",
   contact: "/contact",
+  about: "/about",
   formatsHash: "/#supported-formats",
 } as const;
 

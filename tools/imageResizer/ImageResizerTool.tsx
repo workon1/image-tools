@@ -19,7 +19,18 @@ import { buildOutputFilename } from "@/lib/fileUtils";
 import { formatToExtension, IMAGE_FORMATS, type ImageFormat } from "@/lib/formatUtils";
 import { renderImage, type RenderResult } from "@/lib/imageRender";
 import { logError } from "@/lib/logger";
-import { clampDimension, linkedHeight, linkedWidth } from "@/lib/resizeUtils";
+import { clampDimension, linkedHeight, linkedWidth, scaledByPercent } from "@/lib/resizeUtils";
+
+const SIZE_PRESETS: Array<
+  | { id: string; label: string; percent: number }
+  | { id: string; label: string; width: number; height: number }
+> = [
+  { id: "p50", label: "50%", percent: 50 },
+  { id: "p25", label: "25%", percent: 25 },
+  { id: "square", label: "1080 × 1080", width: 1080, height: 1080 },
+  { id: "hd", label: "1920 × 1080", width: 1920, height: 1080 },
+  { id: "story", label: "1080 × 1920", width: 1080, height: 1920 },
+];
 
 export function ImageResizerTool() {
   const selection = useImageSelection({ toolId: "image-resizer" });
@@ -124,6 +135,36 @@ export function ImageResizerTool() {
               onHeightChange={handleHeight}
               onLockChange={setLockAspect}
             />
+            {activeImage ? (
+              <div className="flex flex-wrap gap-2">
+                {SIZE_PRESETS.map((preset) => (
+                  <button
+                    key={preset.id}
+                    type="button"
+                    className="rounded-full bg-paper px-3 py-1.5 text-sm text-ink"
+                    disabled={working}
+                    onClick={() => {
+                      if ("percent" in preset) {
+                        const next = scaledByPercent(
+                          activeImage.width,
+                          activeImage.height,
+                          preset.percent,
+                        );
+                        setWidth(next.width);
+                        setHeight(next.height);
+                      } else {
+                        setLockAspect(false);
+                        setWidth(clampDimension(preset.width));
+                        setHeight(clampDimension(preset.height));
+                      }
+                      setResult(null);
+                    }}
+                  >
+                    {preset.label}
+                  </button>
+                ))}
+              </div>
+            ) : null}
             <FormatSelector
               formats={[...IMAGE_FORMATS]}
               value={outputFormat}

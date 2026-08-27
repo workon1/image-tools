@@ -1,10 +1,14 @@
+import type { CSSProperties } from "react";
+
 type ImagePreviewProps = {
   src: string | null;
   alt: string;
   label?: string;
+  imageClassName?: string;
+  imageStyle?: CSSProperties;
 };
 
-export function ImagePreview({ src, alt, label }: ImagePreviewProps) {
+export function ImagePreview({ src, alt, label, imageClassName, imageStyle }: ImagePreviewProps) {
   return (
     <figure className="min-w-0">
       {label ? (
@@ -14,7 +18,12 @@ export function ImagePreview({ src, alt, label }: ImagePreviewProps) {
         {src ? (
           // Object URLs are not next/image sources; keep a plain img for local blobs.
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={src} alt={alt} className="max-h-full max-w-full object-contain" />
+          <img
+            src={src}
+            alt={alt}
+            style={imageStyle}
+            className={`max-h-full max-w-full object-contain ${imageClassName ?? ""}`}
+          />
         ) : (
           <span className="max-w-[90%] rounded-full bg-surface/90 px-3 py-1 text-center text-sm text-muted">
             Convert to see the result

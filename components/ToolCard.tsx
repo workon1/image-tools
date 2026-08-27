@@ -12,13 +12,11 @@ export function ToolCard({ tool }: ToolCardProps) {
     <>
       <div className="flex items-start justify-between gap-3">
         <h3 className="font-semibold tracking-tight text-ink">{tool.name}</h3>
-        <span
-          className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
-            isAvailable ? "bg-accent/10 text-accent" : "bg-paper text-muted"
-          }`}
-        >
-          {isAvailable ? "Ready" : "Soon"}
-        </span>
+        {isAvailable ? null : (
+          <span className="rounded-full bg-paper px-2.5 py-0.5 text-xs font-medium text-muted">
+            Soon
+          </span>
+        )}
       </div>
       <p className="mt-2 text-sm leading-6 text-muted">{tool.description}</p>
       {tool.formats ? (

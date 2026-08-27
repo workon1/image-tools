@@ -14,6 +14,8 @@ export default function ImageCompressorPage() {
     <ToolPage
       title="Image Compressor"
       description="Set a target file size as a percent of the original. 50% means we aim for half the bytes, without going over. JPG and WebP are used because they can actually shrink."
+      path="/image-compressor"
+      toolId="image-compressor"
       faq={[
         {
           question: "Does 50% mean JPEG quality 50?",
@@ -24,6 +26,11 @@ export default function ImageCompressorPage() {
           question: "Why isn’t the result exactly 50%?",
           answer:
             "JPEG and WebP sizes jump in steps. We pick the largest file that still stays under your cap. If even high quality is already smaller than the target, you’ll get that smaller file — we won’t pad it to look bigger.",
+        },
+        {
+          question: "Can I compress PNG and keep PNG?",
+          answer:
+            "PNG is lossless, so re-saving PNG rarely shrinks. This compressor writes JPG or WebP, which can actually get smaller.",
         },
       ]}
     >

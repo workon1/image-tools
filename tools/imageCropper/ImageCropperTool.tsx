@@ -18,12 +18,22 @@ import { buildOutputFilename } from "@/lib/fileUtils";
 import { formatToExtension, IMAGE_FORMATS, type ImageFormat } from "@/lib/formatUtils";
 import { centeredCrop, type CropRect, renderImage, type RenderResult } from "@/lib/imageRender";
 import { logError } from "@/lib/logger";
+import {
+  fitSocialExportSize,
+  getSocialCropPreset,
+  presetsForPlatform,
+  SOCIAL_PLATFORMS,
+  type SocialPlatform,
+} from "@/lib/socialCropPresets";
 
-const PRESETS = [
+const RATIO_PRESETS = [
   { id: "free", label: "Free", ratio: null as number | null },
   { id: "1:1", label: "1:1", ratio: 1 },
   { id: "4:3", label: "4:3", ratio: 4 / 3 },
+  { id: "3:2", label: "3:2", ratio: 3 / 2 },
   { id: "16:9", label: "16:9", ratio: 16 / 9 },
+  { id: "9:16", label: "9:16", ratio: 9 / 16 },
+  { id: "4:5", label: "4:5", ratio: 4 / 5 },
 ];
 
 export function ImageCropperTool() {
@@ -38,6 +48,8 @@ export function ImageCropperTool() {
     : { x: 0, y: 0, width: 1, height: 1 };
   const [crop, setCrop] = useKeyedState<CropRect>(imageKey, defaultCrop);
   const [aspect, setAspect] = useKeyedState<number | null>(imageKey, null);
+  const [presetId, setPresetId] = useKeyedState(imageKey, "free");
+  const [platform, setPlatform] = useKeyedState<SocialPlatform>(imageKey, "instagram");
   const [outputFormat, setOutputFormat] = useKeyedState<ImageFormat>(
     imageKey,
     activeImage?.format ?? "jpeg",
@@ -45,8 +57,11 @@ export function ImageCropperTool() {
   const [working, setWorking] = useState(false);
   const [result, setResult] = useKeyedState<RenderResult | null>(imageKey, null);
   const resultUrl = useObjectUrl(result?.blob ?? null);
+  const socialPreset = getSocialCropPreset(presetId);
+  const socialOptions = presetsForPlatform(platform);
 
-  function applyPreset(ratio: number | null) {
+  function applyRatio(id: string, ratio: number | null) {
+    setPresetId(id);
     setAspect(ratio);
     if (!activeImage) return;
     setCrop(
@@ -57,6 +72,12 @@ export function ImageCropperTool() {
     setResult(null);
   }
 
+  function applySocial(id: string) {
+    const preset = getSocialCropPreset(id);
+    if (!preset) return;
+    applyRatio(preset.id, preset.ratio);
+  }
+
   async function run() {
     if (!activeImage || working) return;
     const controller = beginTask();
@@ -64,9 +85,14 @@ export function ImageCropperTool() {
     selection.setErrors([]);
     track("conversion_started", { tool: "image-cropper", output_format: outputFormat });
     try {
+      const exportSize = socialPreset
+        ? fitSocialExportSize(crop.width, crop.height, socialPreset.width, socialPreset.height)
+        : null;
       const next = await renderImage(activeImage.file, {
         outputFormat,
         crop,
+        targetWidth: exportSize?.width,
+        targetHeight: exportSize?.height,
         quality: 92,
         signal: controller.signal,
       });
@@ -114,20 +140,72 @@ export function ImageCropperTool() {
                 setResult(null);
               }}
             />
-            <div className="flex flex-wrap gap-2">
-              {PRESETS.map((preset) => (
-                <button
-                  key={preset.id}
-                  type="button"
-                  className={`rounded-full px-3 py-1.5 text-sm ${
-                    aspect === preset.ratio ? "bg-accent text-white" : "bg-paper text-ink"
-                  }`}
-                  onClick={() => applyPreset(preset.ratio)}
-                >
-                  {preset.label}
-                </button>
-              ))}
-            </div>
+            <fieldset className="min-w-0">
+              <legend className="text-sm font-medium text-ink">Ratio</legend>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {RATIO_PRESETS.map((preset) => (
+                  <button
+                    key={preset.id}
+                    type="button"
+                    className={`rounded-full px-3 py-1.5 text-sm ${
+                      presetId === preset.id ? "bg-accent text-white" : "bg-paper text-ink"
+                    }`}
+                    onClick={() => applyRatio(preset.id, preset.ratio)}
+                    disabled={working}
+                  >
+                    {preset.label}
+                  </button>
+                ))}
+              </div>
+            </fieldset>
+            <fieldset className="min-w-0">
+              <legend className="text-sm font-medium text-ink">Social media</legend>
+              <p className="mt-1 text-sm leading-6 text-muted">
+                Pick a site, then a profile, post, story, or cover size. The download is resized to
+                that platform’s usual pixels without stretching.
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {SOCIAL_PLATFORMS.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    className={`rounded-full px-3 py-1.5 text-sm ${
+                      platform === item.id ? "bg-ink text-surface" : "bg-paper text-ink"
+                    }`}
+                    onClick={() => setPlatform(item.id)}
+                    disabled={working}
+                    aria-pressed={platform === item.id}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {socialOptions.map((preset) => (
+                  <button
+                    key={preset.id}
+                    type="button"
+                    className={`rounded-full px-3 py-1.5 text-sm ${
+                      presetId === preset.id ? "bg-accent text-white" : "bg-paper text-ink"
+                    }`}
+                    onClick={() => applySocial(preset.id)}
+                    disabled={working}
+                  >
+                    {preset.label}
+                    <span className="ml-1 text-xs opacity-80">
+                      {preset.width}×{preset.height}
+                    </span>
+                  </button>
+                ))}
+              </div>
+              {socialPreset ? (
+                <p className="mt-3 text-sm text-muted">
+                  {socialPreset.platformLabel} {socialPreset.label.toLowerCase()} downloads at{" "}
+                  {socialPreset.width} × {socialPreset.height} pixels when the crop is large enough.
+                  Smaller photos are not stretched.
+                </p>
+              ) : null}
+            </fieldset>
             <FileMeta
               filename={activeImage.file.name}
               format={activeImage.format}
@@ -158,6 +236,7 @@ export function ImageCropperTool() {
                   filename={buildOutputFilename(
                     activeImage.file.name,
                     formatToExtension(result.format),
+                    socialPreset?.id,
                   )}
                   outputFormat={result.format}
                 />

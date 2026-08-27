@@ -14,6 +14,8 @@ export default function CompressTo200KbPage() {
     <ToolPage
       title="Compress to 200 KB"
       description="Aim for a 200 KB file when a form or mailbox rejects larger uploads. Processing stays on your device."
+      path="/compress-to-200kb"
+      toolId="compress-to-200kb"
       faq={[
         {
           question: "JPG or WebP?",

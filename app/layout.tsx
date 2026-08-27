@@ -3,7 +3,10 @@ import type { ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { AnalyticsPageView } from "@/components/AnalyticsPageView";
+import { JsonLd } from "@/components/JsonLd";
 import { siteConfig } from "@/config/site";
+import { webApplicationJsonLd, websiteJsonLd } from "@/lib/structuredData";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -64,6 +67,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full max-w-full overflow-x-clip antialiased`}
     >
       <body className="flex min-h-full max-w-full flex-col overflow-x-clip bg-paper font-sans text-ink">
+        <JsonLd data={websiteJsonLd()} />
+        <JsonLd data={webApplicationJsonLd()} />
+        <AnalyticsPageView />
         <Header />
         {children}
         <Footer />

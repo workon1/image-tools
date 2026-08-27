@@ -1,5 +1,6 @@
 import { FAQ } from "@/components/FAQ";
 import { HowItWorks } from "@/components/HowItWorks";
+import { JsonLd } from "@/components/JsonLd";
 import { PrivacySection } from "@/components/PrivacySection";
 import { SupportedFormats } from "@/components/SupportedFormats";
 import { ToolCard } from "@/components/ToolCard";
@@ -8,6 +9,7 @@ import { ImageConverterTool } from "@/tools/imageConverter/ImageConverterTool";
 import { converterFaq } from "@/tools/imageConverter/faq";
 import { tools } from "@/tools/registry";
 import { createPageMetadata } from "@/lib/seo";
+import { faqPageJsonLd } from "@/lib/structuredData";
 import { siteConfig } from "@/config/site";
 
 export const metadata = createPageMetadata({
@@ -20,6 +22,7 @@ export const metadata = createPageMetadata({
 export default function HomePage() {
   return (
     <main id="main" className="mx-auto w-full min-w-0 max-w-6xl flex-1 px-4 py-8 sm:px-6 sm:py-16">
+      <JsonLd data={faqPageJsonLd(converterFaq)} />
       <section className="text-center">
         <p className="inline-flex rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
           Fast, private, and free

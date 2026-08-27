@@ -48,5 +48,8 @@ describe("filename generation", () => {
   it("builds a download name from the original file and output format", () => {
     expect(buildOutputFilename("Holiday Photo.PNG", "jpg")).toBe("Holiday Photo.jpg");
     expect(buildOutputFilename("folder/invoices\\scan.png", "webp")).toBe("scan.webp");
+    expect(buildOutputFilename("photo.png", "jpg", "instagram-post-portrait")).toBe(
+      "photo-instagram-post-portrait.jpg",
+    );
   });
 });

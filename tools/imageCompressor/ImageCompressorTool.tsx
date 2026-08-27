@@ -25,8 +25,14 @@ import { logError } from "@/lib/logger";
 
 const OUTPUTS: ImageFormat[] = ["jpeg", "webp"];
 
-export function ImageCompressorTool() {
-  const selection = useImageSelection({ toolId: "image-compressor" });
+export function ImageCompressorTool({
+  toolId = "image-compressor",
+  lockedInput,
+}: {
+  toolId?: string;
+  lockedInput?: ImageFormat;
+}) {
+  const selection = useImageSelection({ toolId, lockedInput });
   const { activeImage, beginTask } = selection;
   const originalUrl = useObjectUrl(activeImage?.file ?? null);
   const imageKey = activeImage
@@ -49,7 +55,7 @@ export function ImageCompressorTool() {
     const controller = beginTask();
     setWorking(true);
     selection.setErrors([]);
-    track("conversion_started", { tool: "image-compressor", output_format: outputFormat });
+    track("conversion_started", { tool: toolId, output_format: outputFormat });
     try {
       const next = await compressToMaxBytes(activeImage.file, {
         maxBytes: targetBytes,
@@ -60,12 +66,12 @@ export function ImageCompressorTool() {
         signal: controller.signal,
       });
       setResult(next);
-      track("conversion_completed", { tool: "image-compressor", output_format: outputFormat });
+      track("conversion_completed", { tool: toolId, output_format: outputFormat });
     } catch (error) {
       logError("compress", error);
       if (getErrorCode(error) !== "cancelled") {
         selection.setErrors([getUserErrorMessage(error)]);
-        track("conversion_failed", { tool: "image-compressor", reason: getErrorCode(error) });
+        track("conversion_failed", { tool: toolId, reason: getErrorCode(error) });
       }
     } finally {
       setWorking(false);

@@ -15,6 +15,18 @@ export function clampDimension(value: number): number {
   return Math.min(MAX_IMAGE_DIMENSION, Math.max(MIN_OUTPUT_DIMENSION, Math.round(value)));
 }
 
+export function scaledByPercent(
+  width: number,
+  height: number,
+  percent: number,
+): { width: number; height: number } {
+  const factor = Math.max(1, percent) / 100;
+  return {
+    width: clampDimension(width * factor),
+    height: clampDimension(height * factor),
+  };
+}
+
 export function blobToDataUrl(blob: Blob): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();

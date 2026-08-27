@@ -105,6 +105,21 @@ export function ImageUploader({ onFiles, disabled = false, compact = false }: Im
           {compact ? "Replace image" : "Choose images"}
         </span>
       </label>
+      {!compact ? (
+        <div className="mt-3 text-center">
+          <label className="inline-flex cursor-pointer text-sm font-medium text-accent hover:underline">
+            <input
+              type="file"
+              accept={acceptAttribute(ACCEPTED_EXTENSIONS, ACCEPTED_MIME_TYPES)}
+              capture="environment"
+              className="sr-only"
+              disabled={disabled}
+              onChange={handleChange}
+            />
+            Use camera
+          </label>
+        </div>
+      ) : null}
       <p className="sr-only" aria-live="polite">
         {dragging ? "Drop images to add them." : ""}
       </p>

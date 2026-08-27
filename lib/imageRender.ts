@@ -18,14 +18,30 @@ export type CropRect = {
   height: number;
 };
 
+export type RotateDegrees = 0 | 90 | 180 | 270;
+
 export type RenderOptions = {
   outputFormat: ImageFormat;
   quality?: number;
   targetWidth?: number;
   targetHeight?: number;
   crop?: CropRect;
+  rotate?: RotateDegrees;
+  flipHorizontal?: boolean;
+  flipVertical?: boolean;
   signal?: AbortSignal;
 };
+
+export function orientedSize(
+  width: number,
+  height: number,
+  rotate: RotateDegrees = 0,
+): { width: number; height: number } {
+  if (rotate === 90 || rotate === 270) {
+    return { width: height, height: width };
+  }
+  return { width, height };
+}
 
 export type RenderResult = {
   blob: Blob;
@@ -109,13 +125,17 @@ export async function renderImage(file: File, options: RenderOptions): Promise<R
       ? clampCrop(options.crop, decoded.width, decoded.height)
       : { x: 0, y: 0, width: decoded.width, height: decoded.height };
 
+    const rotate = options.rotate ?? 0;
+    const flipHorizontal = Boolean(options.flipHorizontal);
+    const flipVertical = Boolean(options.flipVertical);
+    const oriented = orientedSize(source.width, source.height, rotate);
     const targetWidth = Math.max(
       options.targetWidth === undefined ? 1 : MIN_OUTPUT_DIMENSION,
-      Math.round(options.targetWidth ?? source.width),
+      Math.round(options.targetWidth ?? oriented.width),
     );
     const targetHeight = Math.max(
       options.targetHeight === undefined ? 1 : MIN_OUTPUT_DIMENSION,
-      Math.round(options.targetHeight ?? source.height),
+      Math.round(options.targetHeight ?? oriented.height),
     );
     assertImageDimensions(targetWidth, targetHeight);
 
@@ -132,17 +152,43 @@ export async function renderImage(file: File, options: RenderOptions): Promise<R
       context.fillRect(0, 0, canvas.width, canvas.height);
     }
 
-    decoded.drawRect(
-      context,
-      source.x,
-      source.y,
-      source.width,
-      source.height,
-      0,
-      0,
-      targetWidth,
-      targetHeight,
-    );
+    const needsTransform = rotate !== 0 || flipHorizontal || flipVertical;
+    if (!needsTransform) {
+      decoded.drawRect(
+        context,
+        source.x,
+        source.y,
+        source.width,
+        source.height,
+        0,
+        0,
+        targetWidth,
+        targetHeight,
+      );
+    } else {
+      const swapped = rotate === 90 || rotate === 270;
+      const scaleX = swapped ? targetHeight / source.width : targetWidth / source.width;
+      const scaleY = swapped ? targetWidth / source.height : targetHeight / source.height;
+      context.save();
+      context.translate(targetWidth / 2, targetHeight / 2);
+      context.rotate((rotate * Math.PI) / 180);
+      context.scale(
+        (flipHorizontal ? -1 : 1) * scaleX,
+        (flipVertical ? -1 : 1) * scaleY,
+      );
+      decoded.drawRect(
+        context,
+        source.x,
+        source.y,
+        source.width,
+        source.height,
+        -source.width / 2,
+        -source.height / 2,
+        source.width,
+        source.height,
+      );
+      context.restore();
+    }
     decoded.close();
     decoded = null;
 

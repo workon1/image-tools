@@ -1,3 +1,5 @@
+export const PRODUCTION_SITE_URL = "https://imagereshaper.com";
+
 function readPublicEnv(name: string, fallback = ""): string {
   const value = process.env[name];
   return typeof value === "string" ? value.trim() : fallback;
@@ -10,8 +12,34 @@ function readPublicFlag(name: string, fallback = false): boolean {
   return fallback;
 }
 
+function isNonProductionHost(url: string): boolean {
+  try {
+    const host = new URL(url).hostname;
+    return (
+      host === "localhost" ||
+      host === "127.0.0.1" ||
+      host.endsWith(".vercel.app") ||
+      host.endsWith(".localhost")
+    );
+  } catch {
+    return true;
+  }
+}
+
+export function resolveSiteUrl(
+  raw = readPublicEnv("NEXT_PUBLIC_SITE_URL"),
+  nodeEnv = process.env.NODE_ENV,
+): string {
+  const fallback = nodeEnv === "production" ? PRODUCTION_SITE_URL : "http://localhost:3000";
+  const url = (raw || fallback).replace(/\/+$/, "");
+  if (nodeEnv === "production" && isNonProductionHost(url)) {
+    return PRODUCTION_SITE_URL;
+  }
+  return url;
+}
+
 export const env = {
-  siteUrl: readPublicEnv("NEXT_PUBLIC_SITE_URL", "http://localhost:3000").replace(/\/+$/, ""),
+  siteUrl: resolveSiteUrl(),
   contactEmail: readPublicEnv("NEXT_PUBLIC_CONTACT_EMAIL"),
   analyticsEnabled: readPublicFlag("NEXT_PUBLIC_ANALYTICS_ENABLED", false),
   analyticsProvider: readPublicEnv("NEXT_PUBLIC_ANALYTICS_PROVIDER", "none"),

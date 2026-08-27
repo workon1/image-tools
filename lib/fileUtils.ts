@@ -58,8 +58,16 @@ export function sanitizeFilename(name: string): string {
   return cleaned || "image";
 }
 
-export function buildOutputFilename(originalName: string, extension: string): string {
-  return `${sanitizeFilename(originalName)}.${extension.replace(/^\./, "")}`;
+export function buildOutputFilename(
+  originalName: string,
+  extension: string,
+  suffix?: string,
+): string {
+  const base = sanitizeFilename(originalName);
+  const extra = suffix
+    ? `-${suffix.replace(/[^a-z0-9-]+/gi, "-").replace(/^-|-$/g, "")}`
+    : "";
+  return `${base}${extra}.${extension.replace(/^\./, "")}`;
 }
 
 export function acceptAttribute(

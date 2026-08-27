@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { clampCrop, centeredCrop, squareCenterCrop } from "@/lib/imageRender";
+import { clampCrop, centeredCrop, squareCenterCrop, orientedSize } from "@/lib/imageRender";
 import {
   clampTargetPercent,
   outputSizePercent,
   scaledDimensions,
   targetBytesFromPercent,
 } from "@/lib/imageCompression";
-import { clampDimension, linkedHeight, linkedWidth } from "@/lib/resizeUtils";
+import { clampDimension, linkedHeight, linkedWidth, scaledByPercent } from "@/lib/resizeUtils";
 import { TARGET_100KB_BYTES, TARGET_200KB_BYTES } from "@/lib/constants";
 import { createConversionConfig } from "@/lib/imageConversion";
 import { conversionPairs } from "@/tools/imageConverter/pairs";
@@ -38,6 +38,15 @@ describe("resize helpers", () => {
   it("scales dimensions down with a floor", () => {
     expect(scaledDimensions(1000, 800, 0.5)).toEqual({ width: 500, height: 400 });
   });
+
+  it("scales by percent", () => {
+    expect(scaledByPercent(200, 100, 50)).toEqual({ width: 100, height: 50 });
+  });
+
+  it("swaps size when rotating 90 or 270", () => {
+    expect(orientedSize(200, 100, 90)).toEqual({ width: 100, height: 200 });
+    expect(orientedSize(200, 100, 180)).toEqual({ width: 200, height: 100 });
+  });
 });
 
 describe("target sizes and conversion pairs", () => {
@@ -61,12 +70,14 @@ describe("target sizes and conversion pairs", () => {
     });
   });
 
-  it("locks the four conversion pair routes", () => {
+  it("locks the conversion pair routes", () => {
     expect(conversionPairs.map((pair) => pair.id)).toEqual([
       "jpg-to-png",
       "png-to-jpg",
       "jpg-to-webp",
       "webp-to-jpg",
+      "png-to-webp",
+      "webp-to-png",
     ]);
   });
 });

@@ -13,7 +13,7 @@ export default function PrivacyPage() {
   return (
     <main id="main" className="prose-page mx-auto w-full flex-1 px-4 py-12 sm:px-6 sm:py-16">
       <h1 className="text-4xl font-semibold tracking-tight text-ink">Privacy Policy</h1>
-      <p className="mt-4 text-sm text-muted">Last updated: 21 August 2026</p>
+      <p className="mt-4 text-sm text-muted">Last updated: 27 August 2026</p>
 
       <h2>Summary</h2>
       <p>
@@ -37,11 +37,25 @@ export default function PrivacyPage() {
         <li>Accounts or personal profiles — there is no sign-in</li>
       </ul>
 
+      <h2>Cookies and local storage</h2>
+      <p>
+        Conversion does not require cookies or localStorage. This site does not write image files to
+        disk on a server. If you later enable analytics or advertising, those vendors may set their
+        own cookies. Until those features are turned on, there is no advertising cookie.
+      </p>
+
+      <h2>Advertising</h2>
+      <p>
+        Advertising is off. If ads are enabled later, they will not cover Upload, Process, or
+        Download controls, and they will not receive your image files. The privacy policy will be
+        updated on the date above when that happens.
+      </p>
+
       <h2>Analytics</h2>
       <p>
         Analytics are optional and off by default. If they are enabled later, they may record
-        anonymous events such as “conversion started” or “download clicked”. They must not include
-        filenames, image bytes, or personal information.
+        anonymous events such as page view, tool opened, processing started, or download clicked.
+        They must not include filenames, image bytes, pixels, or personal information.
       </p>
 
       <h2>Hosting and logs</h2>

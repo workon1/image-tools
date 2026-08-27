@@ -14,6 +14,8 @@ export default function CompressTo100KbPage() {
     <ToolPage
       title="Compress to 100 KB"
       description="Aim for a 100 KB file for forms, email, and uploads with size limits. Quality is reduced first; the image is scaled down only if needed."
+      path="/compress-to-100kb"
+      toolId="compress-to-100kb"
       faq={[
         {
           question: "Will every image fit under 100 KB?",

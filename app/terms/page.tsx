@@ -10,7 +10,7 @@ export default function TermsPage() {
   return (
     <main id="main" className="prose-page mx-auto w-full flex-1 px-4 py-12 sm:px-6 sm:py-16">
       <h1 className="text-4xl font-semibold tracking-tight text-ink">Terms of Use</h1>
-      <p className="mt-4 text-sm text-muted">Last updated: 21 August 2026</p>
+      <p className="mt-4 text-sm text-muted">Last updated: 27 August 2026</p>
 
       <h2>The service</h2>
       <p>
@@ -31,6 +31,12 @@ export default function TermsPage() {
         Use the site in a way that does not attempt to disrupt it, probe it for vulnerabilities, or
         bypass client-side limits in order to harm a device. Automated scraping of the marketing
         pages is unnecessary; the converter itself runs locally.
+      </p>
+
+      <h2>Advertising</h2>
+      <p>
+        The site may show advertisements in the future. Ads will not be disguised as download
+        buttons. Advertising is currently disabled.
       </p>
 
       <h2>No warranty</h2>
