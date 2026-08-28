@@ -77,8 +77,11 @@ export default function PrivacyPage() {
         <li>Measuring website performance</li>
       </ul>
       <p>
-        You can manage or restrict cookies through your browser settings and, where applicable, our
-        cookie-consent controls.
+        In the European Economic Area, the United Kingdom, and Switzerland we use a Google-certified
+        consent management platform to ask for your choices before any analytics or advertising
+        cookies are set, and the &ldquo;Cookie settings&rdquo; link in the footer reopens it so you can change
+        them at any time. Everywhere else, you can manage or restrict cookies through your browser
+        settings.
       </p>
 
       <h2>Hosting and Server Logs</h2>

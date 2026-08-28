@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AdSenseScript } from "@/components/AdSenseScript";
 import { AnalyticsPageView } from "@/components/AnalyticsPageView";
-import { ConsentProvider } from "@/components/ConsentProvider";
+import { ConsentMode } from "@/components/ConsentMode";
 import { Footer } from "@/components/Footer";
 import { GoogleTag } from "@/components/GoogleTag";
 import { Header } from "@/components/Header";
@@ -70,16 +70,15 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full max-w-full overflow-x-clip antialiased`}
     >
       <body className="flex min-h-full max-w-full flex-col overflow-x-clip bg-paper font-sans text-ink">
-        <ConsentProvider>
-          <GoogleTag />
-          <AdSenseScript />
-          <JsonLd data={websiteJsonLd()} />
-          <JsonLd data={webApplicationJsonLd()} />
-          <AnalyticsPageView />
-          <Header />
-          {children}
-          <Footer />
-        </ConsentProvider>
+        <ConsentMode />
+        <GoogleTag />
+        <AdSenseScript />
+        <JsonLd data={websiteJsonLd()} />
+        <JsonLd data={webApplicationJsonLd()} />
+        <AnalyticsPageView />
+        <Header />
+        {children}
+        <Footer />
       </body>
     </html>
   );

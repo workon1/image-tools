@@ -1,5 +1,4 @@
 import { features } from "@/config/features";
-import { hasAnalyticsConsent } from "@/lib/consent";
 import { isDev } from "@/lib/logger";
 
 export type AnalyticsEventName =
@@ -54,7 +53,6 @@ class ConsoleProvider implements AnalyticsProvider {
 
 class Ga4Provider implements AnalyticsProvider {
   track(event: AnalyticsEventName, payload?: AnalyticsPayload): void {
-    if (!hasAnalyticsConsent()) return;
     if (typeof window === "undefined" || typeof window.gtag !== "function") return;
     const sanitized = sanitizePayload(payload) ?? {};
     if (event === "page_view") {

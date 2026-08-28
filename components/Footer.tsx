@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BrandLockup } from "@/components/BrandLockup";
+import { CookieSettingsLink } from "@/components/CookieSettingsLink";
 import { routes, siteConfig } from "@/config/site";
 
 const footerLinks = [
@@ -35,6 +36,9 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <CookieSettingsLink />
+              </li>
             </ul>
           </nav>
         </div>

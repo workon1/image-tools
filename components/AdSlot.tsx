@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useConsent } from "@/components/ConsentProvider";
 import { features } from "@/config/features";
 
 type AdSlotName = "header" | "sidebar" | "inline" | "footer";
@@ -23,18 +22,15 @@ function slotIdFor(name: AdSlotName): string {
 }
 
 /**
- * Advertisement region below tool content. Renders only when ads are enabled,
- * the visitor accepts advertising cookies, and AdSense IDs are configured.
+ * Advertisement region below tool content. Personalization is governed by
+ * Consent Mode, so this only checks that AdSense is configured.
  */
 export function AdSlot({ slot, className }: AdSlotProps) {
-  const { ready, preferences } = useConsent();
   const pushed = useRef(false);
   const adSlotId = slotIdFor(slot);
   const clientId = features.ads.clientId;
 
   const enabled =
-    ready &&
-    preferences?.advertising === true &&
     features.ads.enabled &&
     features.ads.provider === "adsense" &&
     Boolean(clientId) &&
