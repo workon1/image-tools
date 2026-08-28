@@ -14,6 +14,7 @@ export const features = {
     enabled: env.adsEnabled,
     provider: env.adsenseClientId ? "adsense" : "none",
     clientId: env.adsenseClientId,
+    inlineSlotId: env.adsenseInlineSlot,
   },
   premium: {
     enabled: env.premiumEnabled,

@@ -46,6 +46,7 @@ export const env = {
   gaMeasurementId: readPublicEnv("NEXT_PUBLIC_GA_MEASUREMENT_ID"),
   adsEnabled: readPublicFlag("NEXT_PUBLIC_ADS_ENABLED", false),
   adsenseClientId: readPublicEnv("NEXT_PUBLIC_ADSENSE_CLIENT_ID"),
+  adsenseInlineSlot: readPublicEnv("NEXT_PUBLIC_ADSENSE_INLINE_SLOT"),
   premiumEnabled: readPublicFlag("NEXT_PUBLIC_PREMIUM_ENABLED", false),
   apiEnabled: readPublicFlag("NEXT_PUBLIC_API_ENABLED", false),
   affiliateEnabled: readPublicFlag("NEXT_PUBLIC_AFFILIATE_ENABLED", false),

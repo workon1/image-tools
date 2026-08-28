@@ -1,15 +1,23 @@
+"use client";
+
 import Script from "next/script";
+import { useConsent } from "@/components/ConsentProvider";
 import { env } from "@/config/env";
 
 /**
- * Single Google tag for the whole site. Next.js injects this in the document
- * head on every page — do not add another copy of this snippet.
+ * Single Google tag for the whole site. Loads only after analytics consent.
  */
 export function GoogleTag() {
+  const { ready, preferences } = useConsent();
   const id = env.gaMeasurementId;
-  if (!env.analyticsEnabled || env.analyticsProvider !== "ga4" || !id) {
-    return null;
-  }
+  const enabled =
+    ready &&
+    preferences?.analytics === true &&
+    env.analyticsEnabled &&
+    env.analyticsProvider === "ga4" &&
+    Boolean(id);
+
+  if (!enabled) return null;
 
   return (
     <>
@@ -19,6 +27,12 @@ export function GoogleTag() {
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
+gtag('consent', 'update', {
+  analytics_storage: 'granted',
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied'
+});
 gtag('config', '${id}', { send_page_view: false });
 `}
       </Script>

@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { AdSenseScript } from "@/components/AdSenseScript";
 import { AnalyticsPageView } from "@/components/AnalyticsPageView";
+import { ConsentProvider } from "@/components/ConsentProvider";
+import { Footer } from "@/components/Footer";
 import { GoogleTag } from "@/components/GoogleTag";
+import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { siteConfig } from "@/config/site";
 import { webApplicationJsonLd, websiteJsonLd } from "@/lib/structuredData";
@@ -68,13 +70,16 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full max-w-full overflow-x-clip antialiased`}
     >
       <body className="flex min-h-full max-w-full flex-col overflow-x-clip bg-paper font-sans text-ink">
-        <GoogleTag />
-        <JsonLd data={websiteJsonLd()} />
-        <JsonLd data={webApplicationJsonLd()} />
-        <AnalyticsPageView />
-        <Header />
-        {children}
-        <Footer />
+        <ConsentProvider>
+          <GoogleTag />
+          <AdSenseScript />
+          <JsonLd data={websiteJsonLd()} />
+          <JsonLd data={webApplicationJsonLd()} />
+          <AnalyticsPageView />
+          <Header />
+          {children}
+          <Footer />
+        </ConsentProvider>
       </body>
     </html>
   );
