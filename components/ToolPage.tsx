@@ -31,14 +31,14 @@ export function ToolPage({
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "/" },
-          { name: "All tools", path: "/tools" },
+          { name: "Available tools", path: "/tools" },
           { name: title, path },
         ])}
       />
       {faq?.length ? <JsonLd data={faqPageJsonLd(faq)} /> : null}
       <p>
         <Link href="/tools" className="text-sm font-medium text-accent hover:underline">
-          ← All tools
+          ← Available tools
         </Link>
       </p>
       <p className="mt-4 inline-flex rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent">

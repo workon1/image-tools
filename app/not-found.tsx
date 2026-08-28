@@ -26,7 +26,7 @@ export default function NotFound() {
           Back to home
         </Link>
         <Link href="/tools" className="btn-secondary">
-          All tools
+          Available tools
         </Link>
       </div>
     </main>

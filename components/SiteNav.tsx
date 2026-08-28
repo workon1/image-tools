@@ -9,7 +9,7 @@ import { ToolsNav } from "@/components/ToolsNav";
 const nav = [
   { href: routes.home, label: "Home" },
   { href: routes.converter, label: "Converter" },
-  { href: "/tools", label: "All tools" },
+  { href: "/tools", label: "Available tools" },
   { href: routes.privacy, label: "Privacy" },
 ];
 
@@ -105,7 +105,7 @@ export function SiteNav() {
         href="/tools"
         className="btn-primary hidden !min-h-9 !w-auto !px-4 text-sm lg:inline-flex"
       >
-        All tools
+        Available tools
       </Link>
     </nav>
   );
