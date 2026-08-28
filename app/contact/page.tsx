@@ -19,9 +19,9 @@ export default function ContactPage() {
       </p>
       {email ? (
         <p>
-          For project questions, email{" "}
-          <a href={`mailto:${email}`}>{email}</a>. That address is on this website&apos;s domain
-          and is forwarded to our inbox.
+          For any questions or inquiries, please email us at{" "}
+          <a href={`mailto:${email}`}>{email}</a>. This email is associated with the ImageReshaper
+          domain.
         </p>
       ) : (
         <p>

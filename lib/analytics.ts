@@ -23,7 +23,14 @@ type AnalyticsProvider = {
 
 const BLOCKED_KEYS = /filename|file_name|name|src|data|base64|email|path|title/i;
 
-function sanitizePayload(payload?: AnalyticsPayload): AnalyticsPayload | undefined {
+declare global {
+  interface Window {
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
+export function sanitizePayload(payload?: AnalyticsPayload): AnalyticsPayload | undefined {
   if (!payload) return undefined;
   const next: AnalyticsPayload = {};
   for (const [key, value] of Object.entries(payload)) {
@@ -44,9 +51,25 @@ class ConsoleProvider implements AnalyticsProvider {
   }
 }
 
+class Ga4Provider implements AnalyticsProvider {
+  track(event: AnalyticsEventName, payload?: AnalyticsPayload): void {
+    if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+    const sanitized = sanitizePayload(payload) ?? {};
+    if (event === "page_view") {
+      const route = typeof sanitized.route === "string" ? sanitized.route : undefined;
+      window.gtag("event", "page_view", route ? { page_path: route } : undefined);
+      return;
+    }
+    window.gtag("event", event, sanitized);
+  }
+}
+
 function createProvider(): AnalyticsProvider {
   if (!features.analytics.enabled) return new NoopProvider();
   if (features.analytics.provider === "console") return new ConsoleProvider();
+  if (features.analytics.provider === "ga4" && features.analytics.measurementId) {
+    return new Ga4Provider();
+  }
   return new NoopProvider();
 }
 
@@ -59,11 +82,13 @@ const EVENT_ALIASES: Partial<Record<AnalyticsEventName, AnalyticsEventName[]>> =
 };
 
 const provider = createProvider();
+const sendAliases = features.analytics.provider === "console";
 
 export function track(event: AnalyticsEventName, payload?: AnalyticsPayload): void {
   const sanitized = sanitizePayload(payload);
   try {
     provider.track(event, sanitized);
+    if (!sendAliases) return;
     for (const alias of EVENT_ALIASES[event] ?? []) {
       provider.track(alias, sanitized);
     }

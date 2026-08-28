@@ -8,6 +8,7 @@ export const features = {
   analytics: {
     enabled: env.analyticsEnabled,
     provider: env.analyticsProvider,
+    measurementId: env.gaMeasurementId,
   },
   ads: {
     enabled: env.adsEnabled,

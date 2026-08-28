@@ -43,6 +43,7 @@ export const env = {
   contactEmail: readPublicEnv("NEXT_PUBLIC_CONTACT_EMAIL") || "hello@imagereshaper.com",
   analyticsEnabled: readPublicFlag("NEXT_PUBLIC_ANALYTICS_ENABLED", false),
   analyticsProvider: readPublicEnv("NEXT_PUBLIC_ANALYTICS_PROVIDER", "none"),
+  gaMeasurementId: readPublicEnv("NEXT_PUBLIC_GA_MEASUREMENT_ID"),
   adsEnabled: readPublicFlag("NEXT_PUBLIC_ADS_ENABLED", false),
   adsenseClientId: readPublicEnv("NEXT_PUBLIC_ADSENSE_CLIENT_ID"),
   premiumEnabled: readPublicFlag("NEXT_PUBLIC_PREMIUM_ENABLED", false),
