@@ -1,4 +1,5 @@
 import { ToolPage } from "@/components/ToolPage";
+import { compressPageContent } from "@/content/tools";
 import { TARGET_100KB_BYTES } from "@/lib/constants";
 import { createPageMetadata } from "@/lib/seo";
 import { TargetCompressorTool } from "@/tools/targetCompressor/TargetCompressorTool";
@@ -16,6 +17,7 @@ export default function CompressTo100KbPage() {
       description="Aim for a 100 KB file for forms, email, and uploads with size limits. Quality is reduced first; the image is scaled down only if needed."
       path="/compress-to-100kb"
       toolId="compress-to-100kb"
+      content={compressPageContent["compress-to-100kb"]}
       faq={[
         {
           question: "Will every image fit under 100 KB?",

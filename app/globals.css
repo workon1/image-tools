@@ -149,6 +149,11 @@ input[type="range"] {
   line-height: 1.75;
 }
 
+.prose-page li {
+  margin-top: 0.35rem;
+  list-style: disc;
+}
+
 .prose-page a {
   color: var(--color-accent);
   text-decoration: underline;

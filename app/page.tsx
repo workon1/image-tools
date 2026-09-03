@@ -3,9 +3,11 @@ import { FAQ } from "@/components/FAQ";
 import { HowItWorks } from "@/components/HowItWorks";
 import { JsonLd } from "@/components/JsonLd";
 import { PrivacySection } from "@/components/PrivacySection";
+import { RichContent } from "@/components/RichContent";
 import { SupportedFormats } from "@/components/SupportedFormats";
 import { ToolsByCategory } from "@/components/ToolsByCategory";
 import { TrustBadges } from "@/components/TrustBadges";
+import { homeContent } from "@/content/hubs";
 import { ImageConverterTool } from "@/tools/imageConverter/ImageConverterTool";
 import { converterFaq } from "@/tools/imageConverter/faq";
 import { createPageMetadata } from "@/lib/seo";
@@ -55,6 +57,15 @@ export default function HomePage() {
           <div className="mt-8">
             <ToolsByCategory titleTag="h3" />
           </div>
+        </section>
+
+        <section>
+          <h2 className="text-3xl font-semibold tracking-tight text-ink">Learn the basics</h2>
+          <p className="mt-3 max-w-2xl text-base leading-7 text-muted">
+            Practical guidance for format choices, compression limits, and private processing—written
+            for people who need a clear answer before they upload a file somewhere else.
+          </p>
+          <RichContent sections={homeContent} className="!mt-8 max-w-3xl" />
         </section>
 
         <section>

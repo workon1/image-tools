@@ -22,6 +22,7 @@ export const siteConfig = {
 export const routes = {
   home: "/",
   converter: "/image-converter",
+  guides: "/guides",
   privacy: "/privacy",
   terms: "/terms",
   contact: "/contact",

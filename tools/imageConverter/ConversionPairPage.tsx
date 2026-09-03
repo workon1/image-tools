@@ -1,6 +1,7 @@
 import { ImageConverterTool } from "@/tools/imageConverter/ImageConverterTool";
 import { conversionPairs, type ConversionPair } from "@/tools/imageConverter/pairs";
 import { ToolPage } from "@/components/ToolPage";
+import { conversionPairContent } from "@/content/tools";
 import { createPageMetadata } from "@/lib/seo";
 
 export function getConversionPair(id: string): ConversionPair {
@@ -29,6 +30,7 @@ export function ConversionPairPage({ id }: { id: string }) {
       path={pair.href}
       faq={pair.faq}
       toolId={pair.id}
+      content={conversionPairContent[pair.id]}
     >
       <ImageConverterTool
         heading={pair.heading}

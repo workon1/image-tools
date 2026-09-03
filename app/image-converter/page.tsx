@@ -1,4 +1,5 @@
 import { ToolPage } from "@/components/ToolPage";
+import { converterHubContent } from "@/content/hubs";
 import { createPageMetadata } from "@/lib/seo";
 import { ImageConverterTool } from "@/tools/imageConverter/ImageConverterTool";
 import { converterFaq } from "@/tools/imageConverter/faq";
@@ -18,6 +19,7 @@ export default function ImageConverterPage() {
       path="/image-converter"
       toolId="image-converter"
       faq={converterFaq}
+      content={converterHubContent}
     >
       <ImageConverterTool heading="Convert an image" />
     </ToolPage>

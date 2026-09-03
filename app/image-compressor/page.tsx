@@ -1,4 +1,5 @@
 import { ToolPage } from "@/components/ToolPage";
+import { compressorHubContent } from "@/content/hubs";
 import { createPageMetadata } from "@/lib/seo";
 import { ImageCompressorTool } from "@/tools/imageCompressor/ImageCompressorTool";
 
@@ -16,6 +17,7 @@ export default function ImageCompressorPage() {
       description="Set a target file size as a percent of the original. 50% means we aim for half the bytes, without going over. JPG and WebP are used because they can actually shrink."
       path="/image-compressor"
       toolId="image-compressor"
+      content={compressorHubContent}
       faq={[
         {
           question: "Does 50% mean JPEG quality 50?",

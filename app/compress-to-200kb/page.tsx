@@ -1,4 +1,5 @@
 import { ToolPage } from "@/components/ToolPage";
+import { compressPageContent } from "@/content/tools";
 import { TARGET_200KB_BYTES } from "@/lib/constants";
 import { createPageMetadata } from "@/lib/seo";
 import { TargetCompressorTool } from "@/tools/targetCompressor/TargetCompressorTool";
@@ -16,6 +17,7 @@ export default function CompressTo200KbPage() {
       description="Aim for a 200 KB file when a form or mailbox rejects larger uploads. Processing stays on your device."
       path="/compress-to-200kb"
       toolId="compress-to-200kb"
+      content={compressPageContent["compress-to-200kb"]}
       faq={[
         {
           question: "JPG or WebP?",

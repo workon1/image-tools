@@ -1,4 +1,5 @@
 import { ToolPage } from "@/components/ToolPage";
+import { metadataToolContent } from "@/content/hubs";
 import { createPageMetadata } from "@/lib/seo";
 import { RemoveMetadataTool } from "@/tools/removeMetadata/RemoveMetadataTool";
 
@@ -16,6 +17,7 @@ export default function RemoveImageMetadataPage() {
       description="Re-encode the image locally so camera, GPS, and other metadata are not copied into the download. Use this before sharing a photo. Limits: 20 MB, 10 files."
       path="/remove-image-metadata"
       toolId="remove-image-metadata"
+      content={metadataToolContent}
       faq={[
         {
           question: "How is metadata removed?",

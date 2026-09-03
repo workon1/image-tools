@@ -1,4 +1,5 @@
 import { ToolPage } from "@/components/ToolPage";
+import { rotateContent } from "@/content/hubs";
 import { createPageMetadata } from "@/lib/seo";
 import { ImageRotateTool } from "@/tools/imageRotate/ImageRotateTool";
 
@@ -16,6 +17,7 @@ export default function ImageRotatePage() {
       description="Turn a photo clockwise, upside down, or mirrored without uploading it. Output stays JPG, PNG, or WebP. Limits: 20 MB, 10 files, 8192 px, 25 megapixels."
       path="/image-rotate"
       toolId="image-rotate"
+      content={rotateContent}
       faq={[
         {
           question: "Does rotate upload my image?",

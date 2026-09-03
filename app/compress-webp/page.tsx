@@ -1,4 +1,5 @@
 import { ToolPage } from "@/components/ToolPage";
+import { compressPageContent } from "@/content/tools";
 import { createPageMetadata } from "@/lib/seo";
 import { ImageCompressorTool } from "@/tools/imageCompressor/ImageCompressorTool";
 
@@ -16,6 +17,7 @@ export default function CompressWebpPage() {
       description="Shrink a WebP to a target percent of its original bytes, or switch to JPG if the destination cannot open WebP. The slider is file size, not a quality label."
       path="/compress-webp"
       toolId="compress-webp"
+      content={compressPageContent["compress-webp"]}
       faq={[
         {
           question: "Can I keep WebP output?",

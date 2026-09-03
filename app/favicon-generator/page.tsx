@@ -1,4 +1,5 @@
 import { ToolPage } from "@/components/ToolPage";
+import { faviconContent } from "@/content/hubs";
 import { createPageMetadata } from "@/lib/seo";
 import { FaviconGeneratorTool } from "@/tools/faviconGenerator/FaviconGeneratorTool";
 
@@ -15,6 +16,7 @@ export default function FaviconGeneratorPage() {
       description="Upload a logo or photo. We square-crop the center and export 16, 32, 48, and 180 pixel icons plus favicon.ico."
       path="/favicon-generator"
       toolId="favicon-generator"
+      content={faviconContent}
       faq={[
         {
           question: "How do I use these files?",

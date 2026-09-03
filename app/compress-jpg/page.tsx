@@ -1,4 +1,5 @@
 import { ToolPage } from "@/components/ToolPage";
+import { compressPageContent } from "@/content/tools";
 import { createPageMetadata } from "@/lib/seo";
 import { ImageCompressorTool } from "@/tools/imageCompressor/ImageCompressorTool";
 
@@ -16,6 +17,7 @@ export default function CompressJpgPage() {
       description="Shrink a JPEG to a target percent of its original bytes. The slider is file size, not a quality label. Processing stays on your device."
       path="/compress-jpg"
       toolId="compress-jpg"
+      content={compressPageContent["compress-jpg"]}
       faq={[
         {
           question: "Does 50% mean quality 50?",
@@ -24,7 +26,8 @@ export default function CompressJpgPage() {
         },
         {
           question: "Can I keep JPG output?",
-          answer: "Yes. This page starts with JPEG output. Switch to WebP if you want a smaller file the destination can open.",
+          answer:
+            "Yes. This page starts with JPEG output. Switch to WebP if you want a smaller file the destination can open.",
         },
         {
           question: "PNG photos?",

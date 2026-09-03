@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { ToolsByCategory } from "@/components/ToolsByCategory";
+import { routes } from "@/config/site";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
@@ -16,7 +18,11 @@ export default function ToolsIndexPage() {
       </h1>
       <p className="mt-4 max-w-2xl text-base leading-7 text-muted">
         Every tool runs locally. Pick a conversion, a size target, or an editor — your files stay on
-        this device.
+        this device. For walkthroughs, see the{" "}
+        <Link href={routes.guides} className="text-accent underline underline-offset-4">
+          guides
+        </Link>
+        .
       </p>
       <div className="mt-12">
         <ToolsByCategory />

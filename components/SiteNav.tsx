@@ -10,6 +10,7 @@ const nav = [
   { href: routes.home, label: "Home" },
   { href: routes.converter, label: "Converter" },
   { href: "/tools", label: "Available tools" },
+  { href: routes.guides, label: "Guides" },
   { href: routes.privacy, label: "Privacy" },
 ];
 

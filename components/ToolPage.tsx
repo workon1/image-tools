@@ -4,7 +4,9 @@ import { AdSlot } from "@/components/AdSlot";
 import { FAQ } from "@/components/FAQ";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedTools } from "@/components/RelatedTools";
+import { RichContent } from "@/components/RichContent";
 import { TrustBadges } from "@/components/TrustBadges";
+import type { ContentSection } from "@/content/types";
 import { breadcrumbJsonLd, faqPageJsonLd } from "@/lib/structuredData";
 
 type ToolPageProps = {
@@ -15,6 +17,7 @@ type ToolPageProps = {
   children: ReactNode;
   faq?: { question: string; answer: string }[];
   toolId?: string;
+  content?: ContentSection[];
 };
 
 export function ToolPage({
@@ -25,6 +28,7 @@ export function ToolPage({
   children,
   faq,
   toolId,
+  content,
 }: ToolPageProps) {
   return (
     <main id="main" className="mx-auto w-full min-w-0 max-w-4xl flex-1 px-4 py-8 sm:px-6 sm:py-16">
@@ -51,6 +55,7 @@ export function ToolPage({
       <TrustBadges />
       <div className="mt-8">{children}</div>
       <AdSlot slot="inline" className="mt-10" />
+      {content?.length ? <RichContent sections={content} /> : null}
       {toolId ? <RelatedTools toolId={toolId} /> : null}
       {faq?.length ? (
         <section className="mt-16">

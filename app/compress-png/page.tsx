@@ -1,4 +1,5 @@
 import { ToolPage } from "@/components/ToolPage";
+import { compressPageContent } from "@/content/tools";
 import { createPageMetadata } from "@/lib/seo";
 import { ImageCompressorTool } from "@/tools/imageCompressor/ImageCompressorTool";
 
@@ -16,6 +17,7 @@ export default function CompressPngPage() {
       description="PNG is lossless, so saving PNG again rarely shrinks. This page accepts a PNG and writes JPG or WebP at a target percent of the original bytes. Processing stays on your device."
       path="/compress-png"
       toolId="compress-png"
+      content={compressPageContent["compress-png"]}
       faq={[
         {
           question: "Why not keep PNG?",

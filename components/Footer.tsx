@@ -6,6 +6,7 @@ import { routes, siteConfig } from "@/config/site";
 const footerLinks = [
   { href: routes.home, label: "Home" },
   { href: "/tools", label: "Available tools" },
+  { href: routes.guides, label: "Guides" },
   { href: routes.about, label: "About" },
   { href: routes.privacy, label: "Privacy Policy" },
   { href: routes.terms, label: "Terms" },

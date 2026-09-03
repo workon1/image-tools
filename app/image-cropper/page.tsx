@@ -1,4 +1,5 @@
 import { ToolPage } from "@/components/ToolPage";
+import { cropperContent } from "@/content/hubs";
 import { createPageMetadata } from "@/lib/seo";
 import { ImageCropperTool } from "@/tools/imageCropper/ImageCropperTool";
 
@@ -16,6 +17,7 @@ export default function ImageCropperPage() {
       description="Drag the box to keep only the part you want. Use a simple ratio, or crop for a social profile, post, story, cover, or thumbnail. Files stay in this browser."
       path="/image-cropper"
       toolId="image-cropper"
+      content={cropperContent}
       faq={[
         {
           question: "Is cropping lossless?",

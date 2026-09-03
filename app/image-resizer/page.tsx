@@ -1,4 +1,5 @@
 import { ToolPage } from "@/components/ToolPage";
+import { resizerContent } from "@/content/hubs";
 import { createPageMetadata } from "@/lib/seo";
 import { ImageResizerTool } from "@/tools/imageResizer/ImageResizerTool";
 
@@ -15,6 +16,7 @@ export default function ImageResizerPage() {
       description="Change an image’s width and height without uploading it. Lock the aspect ratio to avoid stretching. Use a percent or a common preset when you do not need exact pixels."
       path="/image-resizer"
       toolId="image-resizer"
+      content={resizerContent}
       faq={[
         {
           question: "Does resizing upload my photo?",
