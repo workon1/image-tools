@@ -48,7 +48,7 @@ export function SiteNav() {
   }, [open]);
 
   return (
-    <nav aria-label="Primary" className="flex min-w-0 items-center gap-1">
+    <nav aria-label="Primary" className="flex shrink-0 items-center gap-1">
       <div ref={menuRef} className="relative lg:hidden">
         <button
           type="button"
@@ -56,7 +56,7 @@ export function SiteNav() {
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpenPath(open ? null : pathname)}
-          className="grid h-10 w-10 place-items-center rounded-full text-ink hover:bg-paper"
+          className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-ink hover:bg-paper"
         >
           <span className="flex w-4 flex-col gap-1" aria-hidden="true">
             <span className="block h-0.5 w-full rounded-full bg-current" />
@@ -67,7 +67,8 @@ export function SiteNav() {
         {open ? (
           <div
             id="mobile-nav"
-            className="absolute right-0 z-50 mt-2 w-[min(16rem,calc(100vw-1.5rem))] rounded-2xl border border-line bg-surface p-2 shadow-[var(--shadow-soft)]"
+            className="fixed inset-x-3 z-50 rounded-2xl border border-line bg-surface p-2 shadow-[var(--shadow-soft)]"
+            style={{ top: "calc(env(safe-area-inset-top, 0px) + 4.25rem)" }}
           >
             <ul className="text-sm">
               {nav.map((item) => (

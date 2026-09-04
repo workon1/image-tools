@@ -12,11 +12,11 @@ export function Header() {
       >
         Skip to content
       </a>
-      <div className="mx-auto flex min-w-0 max-w-6xl items-center justify-between gap-2 rounded-2xl border border-line/80 bg-surface/80 px-2.5 py-2 shadow-[var(--shadow-soft)] backdrop-blur-md sm:py-2.5 lg:gap-4 lg:rounded-full lg:px-4">
+      <div className="mx-auto flex min-w-0 max-w-6xl items-center justify-between gap-3 rounded-2xl border border-line/80 bg-surface/80 px-2.5 py-2 shadow-[var(--shadow-soft)] backdrop-blur-md sm:gap-4 sm:py-2.5 lg:rounded-full lg:px-4">
         <Link
           href={routes.home}
           aria-label={siteConfig.name}
-          className="group min-w-0 rounded-full py-0.5 pr-1 sm:pr-2"
+          className="group min-w-0 flex-1 overflow-hidden rounded-full py-0.5 pr-1 sm:flex-none sm:pr-2"
         >
           <BrandLockup size="md" showTagline />
         </Link>

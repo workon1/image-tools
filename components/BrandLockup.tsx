@@ -8,8 +8,8 @@ const sizes = {
     tagline: "text-[11px]",
   },
   md: {
-    mark: "h-10 w-10 sm:h-11 sm:w-11",
-    name: "text-lg font-bold tracking-tight sm:text-xl",
+    mark: "h-8 w-8 sm:h-10 sm:w-10 lg:h-11 lg:w-11",
+    name: "text-base font-bold tracking-tight sm:text-lg lg:text-xl",
     tagline: "text-xs",
   },
   lg: {
@@ -39,10 +39,10 @@ export function BrandLockup({
       }`}
     >
       <BrandMark className={`${scale.mark} shrink-0`} />
-      <span className={`leading-tight ${align === "center" ? "text-left" : ""}`}>
-        <span className={`block whitespace-nowrap text-ink ${scale.name}`}>{siteConfig.name}</span>
+      <span className={`min-w-0 leading-tight ${align === "center" ? "text-left" : ""}`}>
+        <span className={`block truncate text-ink ${scale.name}`}>{siteConfig.name}</span>
         {showTagline ? (
-          <span className={`hidden text-muted lg:block ${scale.tagline}`}>
+          <span className={`hidden truncate text-muted lg:block ${scale.tagline}`}>
             Private image conversion
           </span>
         ) : null}
