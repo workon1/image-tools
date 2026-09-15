@@ -35,6 +35,16 @@ export const tools: ToolDefinition[] = [
     parentId: "image-converter",
   })),
   {
+    id: "heic-to-jpg",
+    href: "/heic-to-jpg",
+    name: "HEIC to JPG",
+    description:
+      "Convert iPhone and iPad HEIC photos to JPG, PNG, or WebP so they open anywhere. Decoded in your browser.",
+    status: "available",
+    formats: ["HEIC", "HEIF"],
+    group: "convert",
+  },
+  {
     id: "image-resizer",
     href: "/image-resizer",
     name: "Image Resizer",

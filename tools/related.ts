@@ -1,13 +1,14 @@
 import { getToolById, type ToolDefinition } from "@/tools/registry";
 
 const RELATED: Record<string, string[]> = {
-  "image-converter": ["jpg-to-png", "png-to-jpg", "image-compressor", "image-resizer"],
+  "image-converter": ["jpg-to-png", "png-to-jpg", "heic-to-jpg", "image-compressor"],
   "jpg-to-png": ["png-to-jpg", "jpg-to-webp", "image-compressor", "image-resizer"],
   "png-to-jpg": ["jpg-to-png", "png-to-webp", "image-compressor", "remove-image-metadata"],
   "jpg-to-webp": ["webp-to-jpg", "png-to-webp", "image-compressor", "jpg-to-png"],
   "webp-to-jpg": ["jpg-to-webp", "webp-to-png", "image-compressor", "image-resizer"],
   "png-to-webp": ["webp-to-png", "png-to-jpg", "image-compressor", "jpg-to-webp"],
   "webp-to-png": ["png-to-webp", "webp-to-jpg", "image-cropper", "favicon-generator"],
+  "heic-to-jpg": ["image-converter", "image-compressor", "image-resizer", "remove-image-metadata"],
   "image-resizer": ["image-cropper", "image-compressor", "image-rotate", "image-converter"],
   "image-compressor": ["compress-jpg", "compress-png", "compress-webp", "image-resizer"],
   "compress-jpg": ["compress-png", "jpg-to-webp", "image-resizer", "remove-image-metadata"],

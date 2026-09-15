@@ -42,6 +42,39 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   };
 }
 
+export function articleJsonLd(article: {
+  title: string;
+  description: string;
+  path: string;
+  updated: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.description,
+    url: absoluteUrl(article.path),
+    dateModified: article.updated,
+    datePublished: article.updated,
+    inLanguage: "en",
+    isAccessibleForFree: true,
+    author: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": absoluteUrl(article.path),
+    },
+  };
+}
+
 export function faqPageJsonLd(items: FaqItem[]) {
   return {
     "@context": "https://schema.org",
