@@ -15,7 +15,7 @@ export default function ImageConverterPage() {
   return (
     <ToolPage
       title="Image Converter"
-      description="Convert JPG, PNG and WebP images quickly and privately. Choose any supported pair. Files stay in this browser (20 MB each, 10 at a time)."
+      description="Convert JPG, PNG and WebP images in your browser. Choose any supported pair. Files stay on this device (20 MB each, 10 at a time)."
       path="/image-converter"
       toolId="image-converter"
       faq={converterFaq}

@@ -6,6 +6,7 @@ import { AnalyticsPageView } from "@/components/AnalyticsPageView";
 import { ConsentMode } from "@/components/ConsentMode";
 import { Footer } from "@/components/Footer";
 import { GoogleTag } from "@/components/GoogleTag";
+import { GpcConsent } from "@/components/GpcConsent";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { siteConfig } from "@/config/site";
@@ -72,6 +73,7 @@ export default function RootLayout({
       <body className="flex min-h-full max-w-full flex-col overflow-x-clip bg-paper font-sans text-ink">
         <ConsentMode />
         <GoogleTag />
+        <GpcConsent />
         <AdSenseScript />
         <JsonLd data={websiteJsonLd()} />
         <JsonLd data={webApplicationJsonLd()} />

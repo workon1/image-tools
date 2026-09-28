@@ -5,7 +5,7 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata = createPageMetadata({
   title: "About Image Reshaper",
   description:
-    "Image Reshaper is a free, privacy-first image utility that converts, compresses, resizes, and crops JPG, PNG, and WebP in your browser.",
+    "Image Reshaper is a free, browser-side image utility that converts, compresses, resizes, and crops JPG, PNG, WebP, and HEIC in your browser.",
   path: "/about",
 });
 
@@ -29,9 +29,11 @@ export default function AboutPage() {
         strict about keeping image bytes local while you work.
       </p>
       <p>
-        Image Reshaper is intentionally small. We would rather ship fewer formats that actually work
-        than advertise HEIC, AVIF, GIF, or PDF before those pipelines are reliable here. When a
-        format is listed as supported, the tool has been tested against the documented constraints.
+        Image Reshaper is intentionally small. JPG, PNG, and WebP are available across convert,
+        compress, resize, crop, and related tools. iPhone HEIC and HEIF photos are handled by a
+        dedicated HEIC converter that also runs in the browser. We do not advertise AVIF, GIF, or
+        PDF until those pipelines are reliable here. When a format is listed as supported, the tool
+        has been tested against the documented constraints.
       </p>
 
       <h2>How processing works</h2>
@@ -53,7 +55,7 @@ export default function AboutPage() {
         <li>We do not upload images for conversion.</li>
         <li>We do not train models on your files.</li>
         <li>We do not require an account to use the tools.</li>
-        <li>We do not advertise HEIC, AVIF, GIF, or PDF until those formats actually work here.</li>
+        <li>We do not advertise AVIF, GIF, or PDF until those formats actually work here.</li>
         <li>We do not claim lossless results when a format is lossy (JPG and typical WebP exports).</li>
       </ul>
 

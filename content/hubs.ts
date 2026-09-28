@@ -5,7 +5,7 @@ export const homeContent: ContentSection[] = [
     heading: "Why convert images in the browser?",
     paragraphs: [
       "Most online converters ask you to upload a photo to a remote server, wait for processing, then download the result. That workflow is fine for a public marketing asset, but it is a poor fit for screenshots that contain personal data, product shots that are not public yet, or ID scans you only need for a form. Image Reshaper keeps the entire pipeline on your device: the file is decoded with the browser’s image APIs, drawn to a canvas, re-encoded, and saved as a local download.",
-      "Because nothing is sent to our servers for conversion, closing the tab is enough to discard the working copy. We still collect optional analytics about which tools people open (only after consent where required), but those events never include filenames, pixel data, or EXIF. The product exists so a search result can finish a small job without creating an account.",
+      "Because nothing is sent to our servers for conversion, closing the tab is enough to discard the working copy. Optional analytics may record which tools people open; those events never include filenames, pixel data, or EXIF. In the EEA, UK, and Switzerland, analytics and advertising storage stay denied under Consent Mode until a consent choice updates them. The product exists so a search result can finish a small job without creating an account.",
     ],
   },
   {

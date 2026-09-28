@@ -10,7 +10,7 @@ export default function TermsPage() {
   return (
     <main id="main" className="prose-page mx-auto w-full flex-1 px-4 py-12 sm:px-6 sm:py-16">
       <h1 className="text-4xl font-semibold tracking-tight text-ink">Terms of Use</h1>
-      <p className="mt-4 text-sm text-muted">Last updated: 27 August 2026</p>
+      <p className="mt-4 text-sm text-muted">Last updated: 28 September 2026</p>
 
       <h2>The service</h2>
       <p>
@@ -35,8 +35,10 @@ export default function TermsPage() {
 
       <h2>Advertising</h2>
       <p>
-        The site may show advertisements in the future. Ads will not be disguised as download
-        buttons. Advertising is currently disabled.
+        The site may show advertisements from Google AdSense after approval. Ads will not be
+        disguised as download buttons. Until advertising is enabled in production, ad requests are
+        paused in the browser even if the AdSense script loads for consent messaging. Verification
+        files such as ads.txt may be present beforehand.
       </p>
 
       <h2>No warranty</h2>

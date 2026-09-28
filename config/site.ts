@@ -5,7 +5,7 @@ export const siteConfig = {
   shortName: "Reshaper",
   tagline: "Convert Images Online",
   description:
-    "Convert JPG, PNG and WebP images online for free. Fast, private image conversion processed directly in your browser.",
+    "Convert JPG, PNG and WebP images online for free. Fast browser-side conversion—image files stay on your device.",
   url: env.siteUrl,
   contactEmail: env.contactEmail,
   locale: "en",
@@ -27,6 +27,8 @@ export const routes = {
   terms: "/terms",
   contact: "/contact",
   about: "/about",
+  licenses: "/licenses",
+  doNotSell: "/do-not-sell",
   formatsHash: "/#supported-formats",
 } as const;
 

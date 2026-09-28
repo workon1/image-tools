@@ -1,7 +1,7 @@
 const steps = [
   {
     n: "1",
-    title: "Upload your image",
+    title: "Choose your image",
     body: "Drop a JPG, PNG, or WebP file, or browse from your device. Nothing leaves the browser.",
   },
   {

@@ -44,6 +44,11 @@ export default function HeicToJpgPage() {
           answer:
             "Yes. Open Settings, then Camera, then Formats, and choose Most Compatible. New photos will be saved as JPG. Photos already on the device stay HEIC.",
         },
+        {
+          question: "What open-source software does this tool use?",
+          answer:
+            "Decoding uses the heic-to library (LGPL-3.0), loaded in your browser only when you convert. Source and license notices are on the Licenses page.",
+        },
       ]}
     >
       <HeicConverterTool />

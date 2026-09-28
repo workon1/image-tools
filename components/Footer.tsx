@@ -9,7 +9,9 @@ const footerLinks = [
   { href: routes.guides, label: "Guides" },
   { href: routes.about, label: "About" },
   { href: routes.privacy, label: "Privacy Policy" },
+  { href: routes.doNotSell, label: "Do Not Sell or Share" },
   { href: routes.terms, label: "Terms" },
+  { href: routes.licenses, label: "Licenses" },
   { href: routes.contact, label: "Contact" },
   { href: routes.formatsHash, label: "Supported formats" },
 ];

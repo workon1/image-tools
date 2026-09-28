@@ -12,7 +12,7 @@ export const converterFaq = [
   {
     question: "What image formats are supported?",
     answer:
-      "The current version supports JPG/JPEG, PNG, and WebP in both directions. SVG, GIF, HEIC, and PDF are not included in this first version.",
+      "The main converter supports JPG/JPEG, PNG, and WebP in both directions. For iPhone HEIC/HEIF photos, use the dedicated HEIC to JPG tool. SVG, GIF, AVIF, and PDF are not supported yet.",
   },
   {
     question: "Is there a maximum image size?",

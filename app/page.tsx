@@ -28,13 +28,13 @@ export default function HomePage() {
       <section className="text-center">
         <BrandLockup size="lg" align="center" />
         <p className="mt-5 inline-flex rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
-          Fast, private, and free
+          Fast, local, and free
         </p>
         <h1 className="mx-auto mt-4 max-w-3xl text-3xl font-semibold tracking-tight text-balance text-ink sm:text-6xl">
           Convert Images Online
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-muted sm:text-lg">
-          Convert JPG, PNG and WebP images quickly and privately. Your images are processed in your
+          Convert JPG, PNG and WebP images quickly in your browser. Your images are processed in your
           browser.
         </p>
         <div className="flex justify-center">
